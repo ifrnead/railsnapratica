@@ -1,0 +1,123 @@
+---
+title: Visão geral do projeto Rails
+slug: visao_geral_projeto_rails
+author: Jalerson Lima
+layout: content
+unit: introducao
+order: 5
+comments: true
+type: lesson
+number: 5
+---
+
+<h1 id="aula5">Aula 5 - Visão geral do projeto Rails</h1>
+
+<p>Ao criar um projeto em Ruby on Rails, o próprio <i>framework</i> constrói uma estrutura de pastas e arquivos para facilitar a organização e o desenvolvimento da aplicação. A <a href="#tabela1">Tabela 1</a> ilustra as principais pastas e arquivos de um projeto Rails</p>
+
+<table id="tabela1">
+  <caption><strong>Tabela 1</strong> - Principais pastas e arquivos de um projeto Rails</caption>
+  <thead>
+    <th>Arquivo/pasta</th>
+    <th>Descrição</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td>app/</td>
+      <td>É a principal pasta da aplicação. Contém os <i>models</i>, <i>views</i> e <i>controllers</i> do MVC, além de outras pastas e arquivos.</td>
+    </tr>
+    <tr>
+      <td>app/assets</td>
+      <td>Pasta que agrupa alguns artefatos da aplicação: imagens, javascripts e folhas de estilos.</td>
+    </tr>
+    <tr>
+      <td>app/assets/images</td>
+      <td>Armazena as imagens da aplicação.</td>
+    </tr>
+    <tr>
+      <td>app/assets/javascripts</td>
+      <td>Armazena os <i>scripts</i> JavaScript da aplicação.</td>
+    </tr>
+    <tr>
+      <td>app/assets/stylesheets</td>
+      <td>Armazena as folhas de estilo (CSS) da aplicação.</td>
+    </tr>
+    <tr>
+      <td>app/controllers</td>
+      <td>Contém os <i>controllers</i> da aplicação.</td>
+    </tr>
+    <tr>
+      <td>app/helpers</td>
+      <td>Contém os <i>helpers</i> da aplicação. <i>Helpers</i> são módulos que permitem definir métodos que extraem a lógica da <i>view</i>.</td>
+    </tr>
+    <tr>
+      <td>app/mailers</td>
+      <td>Contém os <i>mailers</i>. Os <i>mailers</i> são classes que auxiliam a aplicação no envio de mensagens de e-mail.</td>
+    </tr>
+    <tr>
+      <td>app/models</td>
+      <td>Armazena os <i>models</i> da aplicação.</td>
+    </tr>
+    <tr>
+      <td>app/views</td>
+      <td>Armazena as <i>views</i> da aplicação.</td>
+    </tr>
+    <tr>
+      <td>config/</td>
+      <td>Contém os arquivos de configuração do projeto.</td>
+    </tr>
+    <tr>
+      <td>config/routes.rb</td>
+      <td>Esse é o arquivo de configuração de rotas da aplicação.</td>
+    </tr>
+    <tr>
+      <td>db/</td>
+      <td>Contém todos os arquivos relativos à persistência de dados do projeto.</td>
+    </tr>
+    <tr>
+      <td>db/migrate</td>
+      <td>Esse diretório armazena todas as <i>migrations</i> do projeto.</td>
+    </tr>
+    <tr>
+      <td>db/seeds.rb</td>
+      <td>O <code class="language-bash">seeds.rb</code> é um <i>script</i> que nos permite carregar os dados iniciais da aplicação no banco de dados.</td>
+    </tr>
+    <tr>
+      <td>lib/</td>
+      <td>Contém as bibliotecas externas que serão usadas por sua aplicação.</td>
+    </tr>
+    <tr>
+      <td>log/</td>
+      <td>Armazena os <i>logs</i> da aplicação.</td>
+    </tr>
+    <tr>
+      <td>public/</td>
+      <td>Essa é a única pasta que é visível pelos usuários da aplicação.</td>
+    </tr>
+    <tr>
+      <td>test/</td>
+      <td>Contém todos os artefatos relativos a testes automatizados da aplicação.</td>
+    </tr>
+    <tr>
+      <td>tmp/</td>
+      <td>Armazena os arquivos temporários (<i>cache</i>, <i>pid</i> e arquivos de sessão).</td>
+    </tr>
+    <tr>
+      <td>vendor/</td>
+      <td>Armazena os códigos de terceiros.</td>
+    </tr>
+    <tr>
+      <td>Gemfile</td>
+      <td>Arquivo que especifica as gems utilizadas pela aplicação.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="principais_componentes">Principais componentes</h2>
+
+<h3 id="models">Models</h3>
+
+<h3 id="controllers">Controllers</h3>
+
+<h3 id="views">Views</h3>
+
+<h3 id="rotas">Rotas</h3>

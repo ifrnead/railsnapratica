@@ -1,0 +1,129 @@
+---
+title: Introdução ao Ruby on Rails
+slug: introducao_ruby_on_rails
+author: Jalerson Lima
+layout: content
+unit: introducao
+order: 2
+comments: true
+type: lesson
+number: 2
+---
+
+<h1 id="aula2">Aula 2 - Introdução ao Ruby on Rails</h1>
+
+<p>O Ruby on Rails (ou simplesmente Rails) é um <i>framework</i>, construído em Ruby, para desenvolvimento de aplicações Web. Mas o que é um <i>framework</i>? Segundo a Wikipédia, um <i>framework</i> <i>"é uma abstração que une códigos comuns entre vários projetos de software provendo uma funcionalidade genérica"</i>. Ou seja, um <i>framework</i> é uma estrutura de software que fornece recursos e funcionalidades genéricas que facilitam o desenvolvimento de aplicações.</p>
+
+<p>As aplicações Web desenvolvidas em Rails são baseadas no padrão arquitetural <i>Model-View-Controller</i> (MVC). Esse padrão divide a aplicação em três partes interconectadas: o <i>Model</i> (Modelo), a <i>View</i> (Visão) e o <i>Controller</i> (Controlador). O MVC é um padrão muito famoso, usado por diversos frameworks como Django, Apache Struts, JSF, CakePHP, CodeIgniter, Laravel e muitos outros. Portanto, compreender o funcionamento do MVC é fundamental para programar em frameworks que seguem esse padrão, além de tornar mais fácil o aprendizado de outros frameworks MVC.</p>
+
+<h2 id="mvc">O padrão MVC</h2>
+
+<figure id="figura1">
+  <img src="{{site.baseurl}}/assets/images/mvc.png" alt="Padrão MVC" class="full-width">
+  <figcaption><strong>Figura 1</strong> - Padrão MVC</figcaption>
+</figure>
+
+<p>A visão (<i>view</i>) é o componente de apresentação do sistema, ou seja, tudo aquilo que o usuário consegue visualizar pertence à visão. Vale salientar que a visão não é um componente único, mas sim um conjunto: no contexto de um sistema acadêmico, pode haver uma visão para apresentar os dados de um aluno, uma visão para apresentar os dados do professor, uma visão com um formulário de matrícula em disciplina, etc. A visão que será apresentada para o usuário é definida pelo controlador (<i>controller</i>), e ela também pode utilizar os modelos da aplicação, conforme explicaremos a seguir.</p>
+
+<p>O modelo (<i>model</i>) é o componente que permite que a aplicação armazene dados de forma persistente (permanente), além de possuir as regras de negócio do sistema. Portanto, quando falamos em modelos, estamos falando em dados e lógica da aplicação. No contexto de um sistema acadêmico, podemos ter um modelo chamado Aluno, que possui nome, matrícula, e-mail, etc., um modelo chamado Professor, que possui nome, salário, área de atuação, etc. Cada modelo da aplicação corresponde a uma tabela (entidade) no banco de dados. Os controladores podem acessar e modificar modelos, enquanto a visão deve apenas acessá-los.</p>
+
+<p>Os controladores (<i>controllers</i>) recebem a requisição do usuário, acessam e/ou atualizam os modelos (se necessário) e apresentam uma visão para o usuário. Portanto, o controlador é o componente que coordena o recebimento de requisições do usuário e interage, quando necessário, com os modelos e as visões.</p>
+
+<h2 id="principios_praticas_tecnicas">Princípios, práticas e técnicas</h2>
+
+<p>O <i>framework</i> Ruby on Rails foi construído seguindo um conjunto de princípios e práticas que visam facilitar o desenvolvimento de aplicações Web. São eles: o DRY, que significa <i>Don't repeat yourself</i>; o CoC, que significa <i>Covention over Configuration</i>; e o ORM, que significa <i>Object-Relational Mapping</i>.</p>
+
+<p>O <strong>DRY (<i>Don’t Repeat Yourself</i>)</strong> é um princípio de desenvolvimento de software que visa reduzir a repetição de informação de qualquer tipo. Formulado por Andy Hunt e Dave Thomas no livro 'O Programador Pragmático', esse princípio propõe que cada porção de conhecimento (informação, código, etc.) deve ter uma única representação e livre de ambiguidades em todo o sistema. Seguindo esse princípio, seu sistema será mais fácil de ser mantido, mais extensível e menos propenso a erros.</p>
+
+<p>O <strong>CoC (<i>Convention over Configuration</i>)</strong> é um princípio que visa reduzir a quantidade de configurações necessárias durante o desenvolvimento, consequentemente reduzindo o esforço do programador. Introduzido por David Heinemeier Hansson (DHH), o criador do framework Rails, esse princípio define uma configuração padrão (convenção) que irá servir para a maioria dos casos, mas também permite que o desenvolvedor altere essa configuração caso seja necessário.</p>
+
+<p>O <strong>ORM (<i>Object-Relational Mapping</i>)</strong> é uma técnica para conversão de dados entre sistemas desenvolvidos com Programação Orientada a Objetos (POO) e bancos de dados relacionais. A representação de dados na Programação Orientada a Objetos é diferente da representação usada nos bancos de dados relacionais, portanto, o papel do ORM é realizar a conversão entre essas duas formas de representação diferentes.</p>
+
+<p>Não se preocupe em compreender estes conceitos a fundo nesse momento, pois eles se tornarão mais evidentes na medida em que nos aprofundarmos nos estudos do framework.</p>
+
+<h2 id="rotas">Rotas</h2>
+
+<p>As rotas (<i>routes</i>) definem qual controlador irá atender a cada requisição HTTP que chega a sua aplicação Web. Por exemplo: supondo que você tenha uma loja virtual e seu cliente acesse o seguinte endereço de sua loja: www.minhalojavirtual.com.br/produtos. As rotas definem qual controlador irá atender as requisições de clientes que acessarem esse endereço. Portanto, poderia haver uma rota que definisse que, quando alguém acessar esse endereço, o controlador ProdutosController irá atende-la.</p>
+
+<h2 id="gems_rubygems_bundler">Gems, Rubygems e Bundler</h2>
+
+<p>Se você tem um <i>smartphone</i> com Android ou iOS, provavelmente conhece o conceito de aplicativos, que são programas que dão novos recursos e funcionalidades para seu celular. Você também deve estar familiarizado com o conceito de loja de aplicativos, como o Google Play ou Apple Store, nas quais você pode buscar e instalar novos aplicativos no seu celular. Por exemplo: se você quiser um novo aplicativo de câmera fotográfica para seu <i>smartphone</i>, basta ir na loja de aplicativos, buscar, baixar e instalar. Tudo de forma simples, fácil e rápido graças a loja de aplicativos.</p>
+
+<p>O conceito de Gem se assemelha ao conceito de um aplicativo para <i>smartphone</i>. Uma Gem é um pacote de software que pode ser "plugado" ao seu projeto, fornecendo novos recursos e funcionalidades à sua aplicação. Por exemplo: se você precisa fazer submissão de arquivos (permitir que os usuários anexem arquivos num formulário), você pode usar uma Gem chamada Paperclip (<a href="https://github.com/thoughtbot/paperclip" target="_blank">https://github.com/thoughtbot/paperclip</a>); se sua aplicação precisa trabalhar com autenticação de usuários, você pode usar uma Gem chamada Devise (<a href="https://github.com/plataformatec/devise" target="_blank">https://github.com/plataformatec/devise</a>), entre muitas outras disponíveis.</p>
+
+<p>Portanto, para recursos e funcionalidades genéricas, comumente necessárias em diversas aplicações, é provável que já exista uma Gem que fornece esse recurso/funcionalidade, dispensando que você tenha que implementá-la, e, consequentemente, economizando tempo e esforço.</p>
+
+<p>Mas, se os aplicativos para celular têm uma loja que facilita a busca e instalação, teriam também as Gems uma loja? Sim, o RubyGems. Contudo, não chamamos o RubyGems de "loja de Gems", mas de gerenciador de pacotes da linguagem Ruby. O RubyGems (<a href="https://rubygems.org" target="_blank">https://rubygems.org</a>) é um serviço online que nos permite distribuir, publicar, buscar e instalar Gems de forma fácil e rápida.</p>
+
+<p>Então temos as Gems, que são pacotes de software que podem ser instaladas ao nosso projeto, fornecendo novas funcionalidades a ele. Temos o RubyGems, que é um gerenciador de pacotes (Gems) que nos permite buscar e instalar Gems facilmente no nosso projeto. Mas a pergunta que você pode estar se fazendo é: onde você deve especificar quais Gems seu projeto irá utilizar? Fazemos isso num arquivo chamado Gemfile. O Gemfile é um arquivo de texto no qual especificamos todas as Gems que deverão ser instaladas ao nosso projeto. O trecho de código ilustrado abaixo mostra um exemplo de Gemfile.</p>
+
+<pre class="language-ruby">
+  <code>
+    source 'https://rubygems.org'
+
+    gem 'paperclip'
+    gem 'devise'
+    gem 'cancan'
+  </code>
+</pre>
+
+<p>No Gemfile apresentado acima, foi especificado que o <i>source</i> (fonte) das Gems será o RubyGems. Ou seja, todas as Gems especificadas nesse arquivo serão buscadas no RubyGems. Em seguida, especificamos as Gems necessárias para o nosso projeto, que nesse caso são: paperclip, devise e cancan. Não se preocupe em tentar compreender o Gemfile agora, pois trabalharemos com Gems em breve.</p>
+
+<p>O Bundler (<a href="http://bundler.io/" target="_blank">http://bundler.io</a>) é um programa utilizado pelos desenvolvedores para facilitar a instalação das Gems especificadas no Gemfile. O Bundler lê o Gemfile, busca e instala as Gems e dependências necessárias, facilitando bastante esse processo e economizando tempo. Para instalar todas as Gems especificadas no Gemfile, usamos o comando <code class="language-bash">bundle install</code>.</p>
+
+<h2 id="migrations">Migrations</h2>
+
+<p>Durante o desenvolvimento de um projeto de software, é muito comum haver a evolução da estrutura do banco de dados, através da criação de novas entidades, associações, restrições, etc. O <i>framework</i> Ruby on Rails utiliza o conceito de migrações (<i>migrations</i>) para evoluir a estrutura do banco de dados do projeto. Portanto, quando estamos desenvolvendo em Rails, não devemos mudar a estrutura da base de dados usando SQL, e sim usando migrações. O interessante das migrações é que elas podem ser executadas para evoluir o banco de dados, mas também podem ser desfeitas para que o banco volte ao estado anterior.</p>
+
+<p>Uma migração é uma classe Ruby que herda da classe <code class="language-ruby">Migration</code> e que possui dois métodos: <code class="language-ruby">up</code> e <code class="language-ruby">down</code>. Quando uma migração é executada para evoluir a estrutura do banco de dados, o método <code class="language-ruby">up</code> é executado. Quando desejamos desfazer as alterações realizadas por uma migração, o método <code class="language-ruby">down</code> é executado. Observe o <a href="#codigo1">Exemplo de Código 1</a>, que ilustra uma migração chamada <code class="language-ruby">CreateProducts</code>.</p>
+
+<pre class="language-ruby line-numbers" id="codigo1">
+  <code>
+    class CreateProducts < ActiveRecord::Migration
+      def up
+        create_table :products do |t|
+          t.string :name
+          t.text :description
+          t.timestamps null: false
+        end
+      end
+
+      def down
+        drop_table :products
+      end
+    end
+  </code>
+</pre>
+<p class="caption"><strong>Exemplo de código 1</strong> - Exemplo de migração. Baseado em: <a href="http://guides.rubyonrails.org/active_record_migrations.html" target="_blank">http://guides.rubyonrails.org/active_record_migrations.html</a></code></p>
+
+<p>Observe que a migração <code class="language-ruby">CreateProducts</code>, ilustrada no <a href="#codigo1">Exemplo de Código 1</a>, possui os métodos <code class="language-ruby">up</code> e <code class="language-ruby">down</code>. O método <code class="language-ruby">up</code> cria uma tabela chamada <code class="language-ruby">products</code> (linha 3) com dois campos: <code class="language-ruby">name</code> do tipo string (linha 4) e <code class="language-ruby">description</code> do tipo text (linha 5). Na linha 7, o método <code class="language-ruby">timestamps</code> cria mais dois campos (<code class="language-ruby">created_at</code> e <code class="language-ruby">updated_at</code>) que registram, automaticamente, o horário de criação e o horário da última atualização do objeto. O método <code class="language-ruby">down</code>, por sua vez, realiza apenas a exclusão da tabela <code class="language-ruby">products</code>. Novamente, não se preocupe em compreender cada detalhe das migrações agora, pois elas serão alvo de estudo em breve.</p>
+
+<h2 id="metodos_http">Métodos HTTP</h2>
+
+<p>O protocolo HTTP, <i>Hypertext Transfer Protocol</i>, que em português significa Protocolo de Transferência de Hipertexto, é um dos principais protocolos de comunicação da Internet e é responsável pela transferência de dados de hipermídia. Utilizamos esse protocolo de forma transparente quando estamos navegando na Internet através do nosso navegador.</p>
+
+<p>Para melhor compreender alguns conceitos que serão abordados em aulas futuras, é preciso compreendermos o conceito de métodos HTTP. Os métodos HTTP, também conhecidos como verbos HTTP, determinam qual ação deve ser executada em um recurso na Internet. Toda e qualquer requisição HTTP precisa especificar qual é o seu método, que pode ser GET, POST, DELETE, PUT, HEAD, OPTIONS, TRACE e CONNECT. Os métodos mais utilizados são os quatro primeiros, detalhados na <a href="#tabela1">Tabela 1</a>.</p>
+
+<table id="tabela1">
+  <caption><strong>Tabela 1</strong> - Principais métodos HTTP</caption>
+  <tbody>
+    <tr>
+      <td>GET</td>
+      <td>Solicita os detalhes de um determinado recurso.</td>
+    </tr>
+    <tr>
+      <td>POST</td>
+      <td>Os dados enviados no corpo da requisição são usados para criar um novo recurso.</td>
+    </tr>
+    <tr>
+      <td>DELETE</td>
+      <td>Apaga um recurso.</td>
+    </tr>
+    <tr>
+      <td>PUT</td>
+      <td>Atualiza um recurso.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Os métodos GET, POST, DELETE e UPDATE são utilizados pelo <i>framework</i> Ruby on Rails para determinar se um determinado recurso da aplicação está sendo acessado, criado, apagado ou atualizado.</p>

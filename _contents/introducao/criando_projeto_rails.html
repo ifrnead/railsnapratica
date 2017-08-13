@@ -1,0 +1,56 @@
+---
+title: Criando um projeto Rails
+slug: criando_projeto_rails
+author: Jalerson Lima
+layout: content
+unit: introducao
+order: 3
+comments: true
+type: lesson
+number: 3
+---
+
+<h1 id="aula3">Aula 3 - Criando um projeto Rails</h1>
+
+<h2 id="criando_projeto_rails_cloud9">Criando um projeto Rails no Cloud9</h2>
+
+<h2 id="criando_projeto_rails_localmente">Criando um projeto Rails localmente</h2>
+
+<p>Para criar um novo projeto com Ruby on Rails é bem simples, basta utilizar o comando <code class="language-bash">rails new &lt;nome-do-projeto&gt;</code>, substituindo <code class="language-bash">&lt;nome-do-projeto&gt;</code> pelo nome do projeto que você deseja criar. Vamos criar um novo projeto utilizando o comando abaixo.</p>
+
+<pre class="language-bash">
+  <code>
+    rails new meuprojeto
+  </code>
+</pre>
+
+<p>Ao executar o comando acima, uma série de mensagens serão exibidas na tela, conforme ilustrado abaixo.</p>
+
+<pre class="language-bash">
+  <code>
+    create
+    create README.rdoc
+    create Rakefile
+    create config.ru
+    create .gitignore
+    create Gemfile
+    create app
+    create app/assets/javascripts/application.js
+    app/assets/stylesheets/application.css
+    app/controllers/application_controller.rb
+    [...]
+    run bundle install
+    Fetching gem metadata from https://rubygems.org/...........
+    Fetching version metadata from https://rubygems.org/...
+    Fetching dependency metadata from https://rubygems.org/..
+    Resolving dependencies............................................
+    Installing rake 11.1.2
+    Using i18n 0.7.0
+    Installing json 1.8.3 with native extensions
+    [...]
+    Bundle complete! 12 Gemfile dependencies, 55 gems now installed.
+    Use `bundle show [gemname]` to see where a bundled gem is installed.
+  </code>
+</pre>
+
+<p>As primeiras mensagens que aparecem, precedidas de <code class="language-bash">create</code>, indicam que um diretório ou um arquivo está sendo criado pelo Rails para compor a estrutura de diretórios e artefatos do seu novo projeto. Além disso, um comando é executado automaticamente: <code class="language-bash">bundle install</code>. Conforme explicado anteriormente, esse comando lê o Gemfile, baixa e instala as Gems necessárias para o projeto. Quando a execução do comando for concluída, significa que o seu novo projeto já está criado.</p>

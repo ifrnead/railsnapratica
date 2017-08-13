@@ -1,0 +1,41 @@
+---
+title: Executando seu projeto Rails
+slug: executando_projeto_rails
+author: Jalerson Lima
+layout: content
+unit: introducao
+order: 6
+comments: true
+type: lesson
+number: 6
+---
+
+<h1 id="aula6">Aula 6 - Executando seu projeto Rails</h1>
+
+<h2 id="executando_projeto_cloud9">Executando seu projeto no Cloud9</h2>
+
+<h2 id="executando_projeto_localmente">Executando seu projeto localmente</h2>
+
+<p>Para executar o seu projeto e poder visualizá-lo no navegador, primeiramente vá para o terminal e digite o comando: <code class="language-bash">rails server</code> (ou apenas <code class="language-bash">rails s</code>), conforme ilustrado abaixo.</p>
+
+<pre class="language-bash">
+  <code>
+    $ rails server
+    => Booting WEBrick
+    => Rails 4.2.4 application starting in development on http://localhost:3000
+    => Run `rails server -h` for more startup options
+    => Ctrl-C to shutdown server
+    [2016-05-14 17:38:58] INFO WEBrick 1.3.1
+    [2016-05-14 17:38:58] INFO ruby 2.2.3 (2015-08-18) [i686-linux]
+    [2016-05-14 17:38:58] INFO WEBrick::HTTPServer#start: pid=4180 port=3000
+  </code>
+</pre>
+
+<p>Ao executar esse comando, um servidor web de desenvolvimento chamado WEBrick será inicializado na porta 3000, portanto já podemos acessar o endereço <a href="http://localhost:3000" target="_blank">http://localhost:3000</a> no navegador para ver o nosso projeto em funcionamento. Portanto, abra o navegador e acesse o referido endereço. Ao fazer isso, a página ilustrada na <a href="#figura1">Figura 1</a> deverá ser exibida.</p>
+
+<figure id="figura1">
+  <img src="{{site.baseurl}}/assets/images/projeto.png" alt="Página inicial do projeto" class="full-width">
+  <figcaption><strong>Figura 1</strong> - Página inicial do projeto</figcaption>
+</figure>
+
+<p>Parabéns! Você acabou de criar o seu primeiro projeto em Ruby on Rails! É claro que ele ainda está vazio, mas esse é o primeiro passo para criar aplicações mais complexas.</p>

@@ -1,0 +1,16 @@
+{% assign contents = site.contents | sort: 'order' %}
+<ul class="chapter">
+  {% for content in contents %}
+    {% if content.unit == include.unit %}
+      <li>
+        <a href="{{site.baseurl}}/contents/{{ content.unit }}/{{ content.slug }}.html">
+          {% if content.type == 'lesson' %}
+            <strong>Aula {{ content.number }}.</strong> {{ content.title }}
+          {% else %}
+            <strong>Lista {{ content.number }}.</strong> {{ content.title }}
+          {% endif %}
+        </a>
+      </li>
+    {% endif %}
+  {% endfor %}
+</ul>
