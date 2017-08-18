@@ -114,10 +114,20 @@ number: 5
 
 <h2 id="principais_componentes">Principais componentes</h2>
 
-<h3 id="models">Models</h3>
+<h3 id="active_record">Active Record</h3>
 
-<h3 id="controllers">Controllers</h3>
+<p>O <i>Active Record</i> é o módulo do <i>framework</i> Rails que nos permite criar e manipular <i>models</i>. Os <i>Models</i> são os componentes responsáveis por representar os dados e lógica de negócio do sistema. Por exemplo: num sistema de gerênciamento acadêmico alguns exemplos de <i>models</i> podem ser Usuario, Turma, Nota, Departamento, etc.</p>
 
-<h3 id="views">Views</h3>
+<p>De forma geral, cada <i>model</i> do projeto corresponde a uma tabela no banco de dados, cada atributo desse <i>model</i> se tornará uma coluna dessa tabela, e cada objeto desse <i>model</i> será uma linha na tabela. Por exemplo: o <i>model</i> Usuario com os atributos "nome", "matricula" e "senha", terá uma tabela correspondente chamada "usuarios" (no plural) com as colunas "nome", "matricula" e "senha".</p>
+
+<p>Os <i>models</i> também são responsáveis pela lógica de negócio da aplicação. Por exemplo, num sistema acadêmico, o <i>model</i> Turma poderia ter um método que matricula um aluno na turma, ou um método que permite um professor dar a nota de um aluno.</p>
 
 <h3 id="rotas">Rotas</h3>
+
+<p>As rotas de uma aplicação definem qual <i>controller</i> irá atender uma determinada requisição HTTP. Quando um usuário faz uma requisição a aplicação, ele o faz acessando um determinado caminho, que chamamos de <i>path</i>. Por exemplo, quando um usuário acessa "http://www.minhaaplicacao.com/notas", ele está fazendo uma requisição HTTP GET no <i>path</i> "/notas". As rotas podem definir, por exemplo, que o controlador "NotasController" irá atender essa requisição e apresentar as notas do usuário.</p>
+
+<h3 id="action_controller">Action Controller</h3>
+
+<p>O <i>Action Controller</i> é o módulo do <i>framework</i> Rails que nos permite construir <i>controllers</i> (controladores). Os <i>controllers</i> são responsáveis por atender as requisições do usuário, usar os <i>models</i> quando necessário, e, por fim, produzir uma resposta para o usuário. Essa resposta, geralmente, é apresentada para o usuário através de uma <i>view</i>.</p>
+
+<h3 id="views">Action View</h3>
