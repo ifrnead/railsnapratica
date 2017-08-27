@@ -20,7 +20,7 @@ São exibidos também dois botões: _Clone_ e _Open_. O botão _Clone_ nos permi
 
 Vamos prosseguir clicando no botão _Open_ para abrir o nosso projeto no editor de código.
 
-** Apresentar o editor de código **
+**Apresentar o editor de código**
 
 O Cloud9 é dividido em navegador de arquivos, editor de código e terminal. O navegador de arquivos nos permite visualizar e manipular os arquivos do nosso projeto, como fazemos normalmente quando usamos o gerenciador de arquivos do nosso sistema operacional. Ao clicar com o botão direito num arquivo ou numa pasta, um menu de contexto será apresentado, em que você poderá acessar várias opções como _Download_ para baixar arquivos ou pastas, _Rename_ para renomear, _Delete_ para apagar, copiar, colar, entre outras opções.
 

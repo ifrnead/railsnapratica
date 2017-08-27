@@ -120,14 +120,62 @@ number: 5
 
 <p>De forma geral, cada <i>model</i> do projeto corresponde a uma tabela no banco de dados, cada atributo desse <i>model</i> se tornará uma coluna dessa tabela, e cada objeto desse <i>model</i> será uma linha na tabela. Por exemplo: o <i>model</i> Usuario com os atributos "nome", "matricula" e "senha", terá uma tabela correspondente chamada "usuarios" (no plural) com as colunas "nome", "matricula" e "senha".</p>
 
-<p>Os <i>models</i> também são responsáveis pela lógica de negócio da aplicação. Por exemplo, num sistema acadêmico, o <i>model</i> Turma poderia ter um método que matricula um aluno na turma, ou um método que permite um professor dar a nota de um aluno.</p>
+<p>O <a href="#codigo1">Exemplo de código 1</a> ilustra um exemplo do <i>model</i> <code class="language-ruby">Usuario</code>. Observe que, um <i>model</i> é, basicamente, uma classe em Ruby que herda da classe <code class="language-ruby">ActiveRecord::Base</code>.</p>
+
+<pre class="language-ruby" id="codigo1">
+  <code>
+    class Usuario < ActiveRecord::Base
+    end
+  </code>
+</pre>
+<p class="caption"><strong>Exemplo de código 1</strong> - <i>Model</i> Usuario</p>
+
+<p>Os <i>models</i> também são responsáveis pela lógica de negócio da aplicação. Por exemplo, num sistema acadêmico, o <i>model</i> Turma poderia ter um método que matricula um aluno na turma (vide <a href="#codigo2">Exemplo de código 2</a>), ou um método que permite um professor dar a nota de um aluno.</p>
+
+<pre class="language-ruby" id="codigo2">
+  <code>
+    class Turma < ActiveRecord::Base
+
+      def matricular(aluno)
+        @alunos << aluno
+      end
+
+    end
+  </code>
+</pre>
+<p class="caption"><strong>Exemplo de código 2</strong> - Exemplo de método do <i>model</i> Turma</p>
 
 <h3 id="rotas">Rotas</h3>
 
 <p>As rotas de uma aplicação definem qual <i>controller</i> irá atender uma determinada requisição HTTP. Quando um usuário faz uma requisição a aplicação, ele o faz acessando um determinado caminho, que chamamos de <i>path</i>. Por exemplo, quando um usuário acessa "http://www.minhaaplicacao.com/notas", ele está fazendo uma requisição HTTP GET no <i>path</i> "/notas". As rotas podem definir, por exemplo, que o controlador "NotasController" irá atender essa requisição e apresentar as notas do usuário.</p>
 
+<p>As rotas da aplicação devem ser configuradas em <code class="language-bash">config/routes.rb</code>. O <a href="#codigo3">Exemplo de código 3</a> ilustra uma configuração de rota que define que, quando um usuário acessar o endereço '/notas' através do método HTTP GET, essa requisição será atendida pelo método <code class="language-ruby">index</code> do controlador <code class="language-ruby">NotasController</code>.</p>
+
+<pre class="language-ruby" id="codigo3">
+  <code>
+    get '/notas', to: 'notas#index'
+  </code>
+</pre>
+<p class="caption"><strong>Exemplo de código 3</strong> - Exemplo de configuração de rota</p>
+
 <h3 id="action_controller">Action Controller</h3>
 
 <p>O <i>Action Controller</i> é o módulo do <i>framework</i> Rails que nos permite construir <i>controllers</i> (controladores). Os <i>controllers</i> são responsáveis por atender as requisições do usuário, usar os <i>models</i> quando necessário, e, por fim, produzir uma resposta para o usuário. Essa resposta, geralmente, é apresentada para o usuário através de uma <i>view</i>.</p>
 
+<p>O <a href="#codigo4">Exemplo de código 4</a> ilustra o controlador <code class="language-ruby">NotasController</code> com o método <code class="language-ruby">index</code>. Observe que, um controlador é, basicamente, uma classe Ruby que herda de <code class="language-ruby">ApplicationController</code>.</p>
+
+<pre class="language-ruby" id="codigo4">
+  <code>
+    class NotasController < ApplicationController
+
+      def index
+      end
+
+    end
+  </code>
+</pre>
+<p class="caption"><strong>Exemplo de código 4</strong> - Controlador NotasController</p>
+
 <h3 id="views">Action View</h3>
+
+<p>O <i>Action View</i> é o módulo do <i>framework</i> Rails que nos permite construir as <i>views</i> da nossa aplicação. As <i>views</i> são os componentes de visão (o V de MVC) e, portanto, é aquilo o que é o usuário vê e interage. Ao construir nossas <i>views</i>, iremos utilizar códigos HTML, CSS e JavaScript, bem como alguns trechos de códigos em Ruby.</p>
