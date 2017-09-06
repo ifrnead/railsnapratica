@@ -145,6 +145,8 @@ number: 5
 </pre>
 <p class="caption"><strong>Exemplo de código 2</strong> - Exemplo de método do <i>model</i> Turma</p>
 
+<p>Num projeto Rails, os models são armazenados na pasta <code class="language-bash">app/models</code>.</p>
+
 <h3 id="rotas">Rotas</h3>
 
 <p>As rotas de uma aplicação definem qual <i>controller</i> irá atender uma determinada requisição HTTP. Quando um usuário faz uma requisição a aplicação, ele o faz acessando um determinado caminho, que chamamos de <i>path</i>. Por exemplo, quando um usuário acessa "http://www.minhaaplicacao.com/notas", ele está fazendo uma requisição HTTP GET no <i>path</i> "/notas". As rotas podem definir, por exemplo, que o controlador "NotasController" irá atender essa requisição e apresentar as notas do usuário.</p>
@@ -176,6 +178,19 @@ number: 5
 </pre>
 <p class="caption"><strong>Exemplo de código 4</strong> - Controlador NotasController</p>
 
+<p>Num projeto Rails, os controladores são localizados na pasta <code class="language-bash">app/controllers</code>.</p>
+
 <h3 id="views">Action View</h3>
 
 <p>O <i>Action View</i> é o módulo do <i>framework</i> Rails que nos permite construir as <i>views</i> da nossa aplicação. As <i>views</i> são os componentes de visão (o V de MVC) e, portanto, é aquilo o que é o usuário vê e interage. Ao construir nossas <i>views</i>, iremos utilizar códigos HTML, CSS e JavaScript, bem como alguns trechos de códigos em Ruby.</p>
+
+<p>Observe o <a href="#codigo5">Exemplo de código 5</a>, que ilustra o trecho de código de uma <i>view</i>. Observe o código Ruby entre os delimitadores <code class="language-markup">#{</code> e <code class="language-markup">}</code>.</p>
+
+<pre class="language-markup" id="codigo5">
+  <code>
+    &lt;h1&gt;Olá #{@usuario.nome}, seja bem-vindo!&lt;/h1&gt;
+  </code>
+</pre>
+<p class="caption"><strong>Exemplo de código 5</strong> - Trecho de código de uma <i>view</i></p>
+
+<p>Num projeto Rails, as <i>views</i> são armazenadas na pasta <code class="language-bash">app/views</code>.</p>
