@@ -1,0 +1,228 @@
+---
+title: Scaffold
+slug: scaffold
+author: Jalerson Lima
+layout: content
+unit: mural
+order: 3
+comments: true
+type: lesson
+number: 9
+---
+
+<h1 id="aula9">Aula 9 - Scaffold</h1>
+
+<h2>Introdução</h2>
+
+<p>O <i>scaffold</i> é um comando disponível no <i>framework</i> Rails que permite a construção do que muitos programadores conhecem como CRUD. CRUD é um acrônimo para <i>Create</i>, <i>Retrieve</i>, <i>Update</i> e <i>Delete</i>. Ou seja, o CRUD repersenta o conjunto de operações de cadastro, detalhamento, atualização e remoção de qualquer objeto. Por exemplo, quando dizemos que criamos um CRUD para Usuário, estamos dizendo que, agora, nosso sistema é capaz de realizar as operações de cadastro, detalhamento, atualização e remoção de pessoas.</p>
+
+<p>O comando <i>scaffold</i> gera um CRUD de um elemento qualquer, e ele possui a seguinte sintaxe:</p>
+
+<pre class="language-bash" id="codigo1">
+  <code>
+    rails generate scaffold &lt;modelo&gt; &lt;atributo1&gt;:&lt;tipo1&gt; &lt;atributo2&gt;:&lt;tipo2&gt; ...
+  </code>
+</pre>
+<p class="caption"><strong>Exemplo de código 1</strong> - Sintaxe do comando <i>scaffold</i></p>
+
+<p>Em &lt;modelo&gt;, especificamos o nome (no singular) do modelo que desejamos criar. Em seguida, especificamos quais são os campos e o tipo de cada campo desse modelo. Nessa aula, vamos tomar como exemplo as mensagens do mural que estamos desenvolvendo. Vamos considerar que uma mensagem tem um título, um corpo, um autor e o endereço de e-mail do autor. Portanto, observe como seria o comando scaffold para esse exemplo:</p>
+
+<pre class="language-bash" id="codigo2">
+  <code>
+    rails generate scaffold mensagem titulo:string corpo:text autor:string email:string
+  </code>
+</pre>
+<p class="caption"><strong>Exemplo de código 2</strong> - Exemplo de comando <i>scaffold</i> para o modelo mensagem</p>
+
+<p>No exemplo acima, estamos criando um CRUD (<i>scaffold</i>) para o modelo mensagem e especificando que a mensagem tem um título, que é uma <i>string</i>, um corpo, que é um <i>text</i>, um autor, que é uma <i>string</i>, e um email que também é uma <i>string</i>. Você pode estar se perguntando qual é a diferença entre <i>string</i> e <i>text</i>, já que ambos representam texto. O atributo do tipo <i>string</i> irá gerar, na tabela "mensagens" do banco de dados, um campo de texto curto, geralmente com, no máximo, 255 caracteres. O atributo do tipo <i>text</i> irá gerar um campo de texto longo.</p>
+
+<p>Quando usamos o comando <i>scaffold</i>, os tipos de dados disponíveis para os campos são: <i>binary</i>, <i>boolean</i>, <i>date</i>, <i>datetime</i>, <i>decimal</i>, <i>float</i>, <i>integer</i>, <i>bigint</i>, <i>primary_key</i>, <i>references</i>, <i>string</i>, <i>text</i>, <i>time</i>, <i>timestamp</i>.</p>
+
+<p>Ao executar o comando apresentado no <a href="#codigo2">Exemplo de código 2</a>, o Rails irá gerar uma série de arquivos que nos permitem realizar as operações de listagem, cadastro, edição, detalhamento e exclusão de mensagens.</p>
+
+<h2>Arquivos gerados pelo scaffold</h2>
+
+<p>Nessa seção, apresentaremos com mais detalhes os arquivos gerados quando executa-se o comando <i>scaffold</i>. Entre os arquivos gerados, temos: um arquivo de migração (<i>migration</i>), um model Mensagem, arquivos de testes, rotas, o controlador <i>MensagensController</i>, algumas <i>views</i>, entre outros.</p>
+
+<h3>Migrações</h3>
+
+<p>Um dos arquivos gerados pelo <i>scaffold</i> é o arquivo de <i>migration</i> que irá criar a tabela "mensagens" no banco de dados: <code class="language-bash">db/migrate/20170924190822_create_mensagens.rb</code>. Os nomes dos arquivos de migração tem sempre esse formato: um número grande no início que é composto por 4 dígitos do ano atual, 2 dígitos do mês atual, 2 dígitos do dia atual, 2 dígitos da hora atual, 2 dígitos do minuto atual e 2 dígitos do segundo atual. Seguido de uma sentença que identifique textualmente o que aquela migração faz: nesse caso, cria a tabela mensagens.</p>
+
+<p>O arquivo de migração gerado pelo comando apresentado no <a href="#codigo2">Exemplo de código 2</a> terá o seguinte conteúdo:</p>
+
+<pre class="language-ruby line-numbers" id="codigo3">
+  <code>
+    class CreateMensagens < ActiveRecord::Migration
+      def change
+        create_table :mensagens do |t|
+          t.string :titulo
+          t.text :corpo
+          t.string :autor
+          t.string :email
+
+          t.timestamps null: false
+        end
+      end
+    end
+  </code>
+</pre>
+<p class="caption"><strong>Exemplo de código 3</strong> - Arquivo de migração</p>
+
+<p>Observe que o arquivo de migração nada mais é que uma classe que herda de <code class="language-ruby">Migration</code>. A classe <code class="language-ruby">CreateMensagens</code> possui um método chamado <code class="language-ruby">change</code> que será executado quando a <i>migration</i> for executada. Esse método cria, na linha 3, a tabela <code class="language-ruby">mensagens</code> no banco de dados com as colunas especificadas no comando.</p>
+
+<p>Se você for observador, vai perceber que há um quinto campo na <i>migration</i> que não foi especificado no comando <i>scaffold</i>: <code class="language-ruby">t.timestamps null: false</code> (linha 9). O <code class="language-ruby">t.timestamps</code> irá gerar duas colunas a mais na tabela "mensagens": o <code class="language-ruby">created_at</code>, que irá armazenar o dia e horário de criação desse registro, e o <code class="language-ruby">updated_at</code>, que irá armazenar o dia e horário da última atualização desse registro.</p>
+
+<h3>Modelo Mensagem</h3>
+
+<p>Além da <i>migration</i>, o comando <i>scaffold</i> também irá gerar um modelo chamando <code class="language-bash">mensagem.rb</code> (vide <a href="#codigo4">Exemplo de código 4</a>), dentro da pasta <code class="language-bash">/app/models</code>.</p>
+
+<pre class="language-ruby" id="codigo4">
+  <code>
+    class Mensagem < ActiveRecord::Base
+    end
+  </code>
+</pre>
+<p class="caption"><strong>Exemplo de código 4</strong> - Modelo Mensagem</p>
+
+<p>Esse modelo nada mais é que uma classe em Ruby que representa uma mensagem do nosso mural, e que herda da classe <code class="language-bash">Base</code>, que está dentro do módulo <code class="language-bash">ActiveRecord</code>. Por enquanto a nossa classe <code class="language-ruby">Mensagem</code> está vazia, mas lembrando que esse modelo já possui os campos <code class="language-ruby">titulo</code>, <code class="language-ruby">corpo</code>, <code class="language-ruby">autor</code> e <code class="language-ruby">email</code>.</p>
+
+<h3>Controlador MensagensController</h3>
+
+<p>Outro arquivo gerado pelo <i>scaffold</i> é o controlador <code class="language-bash">MensagensController</code>, conforme ilustrado no <a href="#codigo5">Exemplo de código 5</a>.</p>
+
+<pre class="language-ruby line-numbers" id="codigo5">
+  <code>
+    class MensagensController < ApplicationController
+      before_action :set_mensagem, only: [:show, :edit, :update, :destroy]
+
+      def index
+        @mensagens = Mensagem.all
+      end
+
+      def show
+      end
+
+      def new
+        @mensagem = Mensagem.new
+      end
+
+      def edit
+      end
+
+      def create
+        @mensagem = Mensagem.new(mensagem_params)
+
+        respond_to do |format|
+          if @mensagem.save
+            format.html { redirect_to @mensagem, notice: 'Mensagem was successfully created.' }
+            format.json { render :show, status: :created, location: @mensagem }
+          else
+            format.html { render :new }
+            format.json { render json: @mensagem.errors, status: :unprocessable_entity }
+          end
+        end
+      end
+
+      def update
+        respond_to do |format|
+          if @mensagem.update(mensagem_params)
+            format.html { redirect_to @mensagem, notice: 'Mensagem was successfully updated.' }
+            format.json { render :show, status: :ok, location: @mensagem }
+          else
+            format.html { render :edit }
+            format.json { render json: @mensagem.errors, status: :unprocessable_entity }
+          end
+        end
+      end
+
+      def destroy
+        @mensagem.destroy
+        respond_to do |format|
+          format.html { redirect_to mensagens_url, notice: 'Mensagem was successfully destroyed.' }
+          format.json { head :no_content }
+        end
+      end
+
+      private
+        def set_mensagem
+          @mensagem = Mensagem.find(params[:id])
+        end
+
+        def mensagem_params
+          params.require(:mensagem).permit(:titulo, :corpo, :autor, :email)
+        end
+    end
+  </code>
+</pre>
+<p class="caption"><strong>Exemplo de código 5</strong> - Controlador <i>MensagensController</i></p>
+
+<p>O controlador <code class="language-ruby">MensagensController</code>, ilustrado no <a href="#codigo5">Exemplo de código 5</a>, herda da classe <code class="language-ruby">ApplicationController</code> e implementa 8 métodos: <code class="language-ruby">index</code>, usado para a listagem de mensagens; <code class="language-ruby">show</code>, responsável por apresentar o detalhamento de uma mensagem; <code class="language-ruby">new</code>, usado para apresentar o formulário para cadastro de nova mensagem; <code class="language-ruby">edit</code>, responsável por apresentar o formulário de edição de uma mensagem; <code class="language-ruby">create</code>, usado para persistir uma nova mensagem; <code class="language-ruby">update</code>, usado para atualizar uma mensagem. Além desses métodos, essa classe ainda implementa outros dois métodos privados: <code class="language-ruby">set_mensagem</code> e <code class="language-ruby">mensagem_params</code>.</p>
+
+<p>Não se preocupe em entender a implementação dos métodos da classe <code class="language-ruby">MensagensController</code> por enquanto. Eles serão abordados em uma aula futura.</p>
+
+<h3>Rotas</h3>
+
+<p>O <i>scaffold</i> também irá modificar o arquivo de rotas (<code class="language-bash">config/routes.rb</code>), aidiconando a linha <code class="language-ruby">resources :mensagens</code>, conforme ilustrado no <a href="#codigo5">Exemplo de código 5</a>.</p>
+
+<pre class="language-ruby line-numbers" id="codigo5">
+  <code>
+    Rails.application.routes.draw do
+      resources :mensagems
+    end
+  </code>
+</pre>
+<p class="caption"><strong>Exemplo de código 5</strong> - Arquivo de rotas</p>
+
+<p>O <code class="language-ruby">resources :mensagens</code> define um conjunto de rotas para o controlador <code class="language-ruby">MensagensController</code>, conforme ilustrado na <a href="#tabela1">Tabela 1</a>.</p>
+
+<table id="tabela1">
+  <caption><strong>Tabela 1</strong> - Rotas geradas pelo comando <i>resources</i></caption>
+  <thead>
+    <th>Método HTTP</th>
+    <th>Endereço</th>
+    <th>Controlador#Método</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td>GET</td>
+      <td><code class="language-bash">/mensagens</code></td>
+      <td><code class="language-bash">mensagens#index</code></td>
+    </tr>
+    <tr>
+      <td>GET</td>
+      <td><code class="language-bash">/mensagens/new</code></td>
+      <td><code class="language-bash">mensagens#new</code></td>
+    </tr>
+    <tr>
+      <td>POST</td>
+      <td><code class="language-bash">/mensagens</code></td>
+      <td><code class="language-bash">mensagens#create</code></td>
+    </tr>
+    <tr>
+      <td>GET</td>
+      <td><code class="language-bash">/mensagens/:id</code></td>
+      <td><code class="language-bash">mensagens#show</code></td>
+    </tr>
+    <tr>
+      <td>GET</td>
+      <td><code class="language-bash">/mensagens/:id/edit</code></td>
+      <td><code class="language-bash">mensagens#edit</code></td>
+    </tr>
+    <tr>
+      <td>PATCH/PUT</td>
+      <td><code class="language-bash">/mensagens/:id</code></td>
+      <td><code class="language-bash">mensagens#update</code></td>
+    </tr>
+    <tr>
+      <td>DELETE</td>
+      <td><code class="language-bash">/mensagens/:id</code></td>
+      <td><code class="language-bash">mensagens#destroy</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Quando o usuário acessar o endereço <code class="language-bash">/mensagens</code> através do método HTTP GET, essa requisição será atendida pelo método <code class="language-ruby">index</code> do controlador <code class="language-ruby">MensagensController</code>. Quando o usuário acessar o endereço <code class="language-bash">/mensagens/new</code> através do método HTTP GET, essa requisição será atendida pelo método <code class="language-ruby">new</code> do controlador <code class="language-ruby">MensagensController</code>.</p>
+
+<h3>Views</h3>
+
+<p>O <i>scaffold</i> também irá gerar uma série de <i>views</i> que estão associadas ao controlador <code class="language-ruby">MensagensController</code>. Todas essas <i>views</i> estão localizadas em <code class="language-bash">app/views/mensagens</code>: <code class="language-bash">new.html.erb</code>, <code class="language-bash">show.html.erb</code>, <code class="language-bash">index.html.erb</code>, <code class="language-bash">edit.html.erb</code>, <code class="language-bash">_form.html.erb</code>, entre outras.</p>
