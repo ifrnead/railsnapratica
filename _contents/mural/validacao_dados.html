@@ -1,0 +1,114 @@
+---
+title: Validação de dados
+slug: validacao_dados
+author: Jalerson Lima
+layout: content
+unit: mural
+order: 11
+comments: true
+type: lesson
+number: 17
+---
+
+<h1 id="aula17">Aula 17 - Validação de Dados</h1>
+
+<h2>Introdução</h2>
+
+<p>Os nossos formulários de cadastro e edição de mensagens está funcionando, mas você já tentou cadastrar uma mensagem sem preencher os campos do formulário? Se fez, você deve ter observado que, mesmo sem preencher os campos, o formulário é submetido e uma mensagem é cadastrada com sucesso.</p>
+
+<p>Para corrigir isso, precisamos começar a utilizar validação de dados. Validação de dados é uma verificação dos dados preenchidos pelos usuários, para determinar se esses dados atendem a determinadas especificações. Por exemplo: no nosso caso, podemos determinar que o preenchimento dos campos título, corpo, autor e email sejam obrigatórios.</p>
+
+<h2>Validações em Rails</h2>
+
+<p>No Rails, as validações de dados são feitas nos modelos usando <i>validation helpers</i>, que são métodos que especificam quais campos devem ser validados. Existem vários tipos de validação. Nessa aula vamos trabalhar com validações de aceitação, confirmação, tamanho de dados, campos numéricos, preenchimento e unicidade.</p>
+
+<h3>Aceitação</h3>
+
+<p>Para validar se um determinado campo foi marcado, usamos <code class="language-ruby">validates</code> com o parâmetro <code class="language-ruby">acceptance: true</code>.</p>
+
+<pre class="language-ruby" id="codigo1">
+  <code>
+    validates :termos_servico, acceptance: true
+  </code>
+</pre>
+<p class="caption"><strong>Exemplo de código 1</strong> - Validação de aceitação</p>
+
+<p>No <a href="#codigo1">Exemplo de código 1</a>, estamos validando se o campo <code class="language-ruby">termos_servico</code> foi marcado.</p>
+
+<h3>Confirmação</h3>
+
+<p>Para validar se um determinado campo foi confirmado, ou seja, se ele foi preenchido e depois preenchido novamente para confirmação, usamos <code class="language-ruby">validates</code> com o parâmetro <code class="language-ruby">confirmation: true</code>.</p>
+
+<pre class="language-ruby" id="codigo2">
+  <code>
+    validates :email, confirmation: true
+  </code>
+</pre>
+<p class="caption"><strong>Exemplo de código 2</strong> - Validação de confirmação</p>
+
+<p>No <a href="#codigo2">Exemplo de código 2</a>, estamos validando se o campo e-mail foi preenchido duas vezes, sendo o segundo preenchimento para confirmação.</p>
+
+<h3>Tamanho</h3>
+
+<p>Para validar se um campo tem um tamanho mínimo ou máximo de caracteres, usamos <code class="language-ruby">validates</code> com o parâmetro <code class="language-ruby">length</code>. Nesse parâmetro podemos especificar um tamanho mínimo usando <code class="language-ruby">minimum</code>, um tamanho máximo usando <code class="language-ruby">maximum</code>, um intervalo usando <code class="language-ruby">in</code>, ou um tamanho específico usando <code class="language-ruby">is</code>.</p>
+
+<pre class="language-ruby" id="codigo3">
+  <code>
+    validates :nome, length: { minimum: 2 } # verifica se o nome possui, no mínimo, 2 caracteres
+    validates :descricao, length: { maximum: 500 } # verifica se a descrição possui, no máximo, 500 caracteres
+    validates :senha, length: { in: 6..20 } # verifica se a senha tem entre 6 e 20 caracteres
+    validates :registro, length: { is: 6 } # verifica se o registro tem 6 caracteres
+  </code>
+</pre>
+<p class="caption"><strong>Exemplo de código 3</strong> - Validação de tamanho</p>
+
+<h3>Campos numéricos</h3>
+
+<p>Para validar um campo numérico, ou seja, se um usuário digitou um número inteiro ou real, usamos <code class="language-ruby">validates</code> com o parâmetro <code class="language-ruby">numericality: true</code>. Para validar se foi digitado apenas números inteiros usamos, ao invés de <code class="language-ruby">true</code>, <code class="language-ruby">only_integer: true</code>.</p>
+
+<pre class="language-ruby" id="codigo4">
+  <code>
+    validates :pontos, numericality: true
+    validates :jogadores, numericality: { only_integer: true }
+  </code>
+</pre>
+<p class="caption"><strong>Exemplo de código 4</strong> - Validação de campos numéricos</p>
+
+<h3>Preenchimento</h3>
+
+<p>Para validar se um campo foi preenchido, usamos <code class="language-ruby">validates</code> com o parâmetro <code class="language-ruby">presence: true</code>.
+  
+<pre class="language-ruby" id="codigo5">
+  <code>
+    validates :nome, :email, :senha, presence: true
+  </code>
+</pre>
+<p class="caption"><strong>Exemplo de código 5</strong> - Validação de preenchimento</p>
+
+<p>Observe que, no <a href="#codigo5">Exemplo de código 5</a>, estamos validando três campos ao mesmo tempo: <code class="language-ruby">:nome</code>, <code class="language-ruby">:email</code> e <code class="language-ruby">:senha</code>. Isso também pode ser feito com os outros validadores.</p>
+
+<h3>Unicidade</h3>
+
+<p>Para validar se um campo é único, ou seja, não foi preenchido com o mesmo valor por outro usuário, usamos <code class="language-ruby">validates</code> com o parâmetro <code class="language-ruby">uniqueness: true</code>.</p>
+
+<pre class="language-ruby" id="codigo6">
+  <code>
+    validates :email, uniqueness: true
+  </code>
+</pre>
+<p class="caption"><strong>Exemplo de código 6</strong> - Validação de unicidade</p>
+
+<h2>Validando o Modelo Mensagem</h2>
+
+<p>No projeto Mural de Mensagens, vamos validar o preenchimento dos campos título, corpo, autor e email. Para isso, abra o modelo Mensagem em <code class="language-ruby">app/models/mensagem.rb</code> e adicione os seguintes validadores.</p>
+
+<pre class="language-ruby" id="codigo7">
+  <code>
+    class Mensagem < ActiveRecord::Base
+      validates :titulo, :corpo, :autor, :email, presence: true
+    end
+  </code>
+</pre>
+<p class="caption"><strong>Exemplo de código 7</strong> - Validação do modelo Mensagem</p>
+
+<p>Feito isso, salve o <i>script</i>, execute o projeto e, no formulário de cadastro de mensagens, tente submeter o formulário com um ou mais campos não preenchidos. Você deve visualizar uma mensagem indicando que o preenchimento dos campos é obrigatório.</p>
